@@ -16,3 +16,13 @@ It’s designed to be fast, scalable, and developer-friendly with a clean UI and
 ---
 
 ## 📂 Project Structure
+Meta-Mart/
+├── public/ # Static assets (images, icons, etc.)
+├── src/ # Source code
+│ ├── components/ # Reusable UI components
+│ ├── pages/ # Next.js pages
+│ ├── styles/ # Global styles
+│ └── utils/ # Helpers & configs
+├── package.json
+├── README.md
+└── .gitignore
