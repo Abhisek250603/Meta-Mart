@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 import AutoSlider from "@/components/AutoSlider";
+import Link from "next/link";
 
 const Page = () => {
   return (
@@ -26,9 +27,9 @@ const Page = () => {
           <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto opacity-90">
             Discover premium products that transform your lifestyle
           </p>
-          <button className="bg-white text-black px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors">
+          <Link href="/shop" className="inline-block bg-white text-black px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
             Shop Now
-          </button>
+          </Link>
         </div>
       </section>
 

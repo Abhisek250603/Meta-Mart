@@ -6,12 +6,12 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
+    <footer className="bg-gradient-to-r from-purple-900 via-blue-900 to-indigo-900 text-white relative overflow-hidden">
       {/* Animated Background Elements */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-10 left-10 w-32 h-32 bg-teal-400 rounded-full animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-24 h-24 bg-teal-400 rounded-full animate-bounce"></div>
-        <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-teal-400 rounded-full animate-ping"></div>
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-10 left-10 w-32 h-32 bg-blue-400 rounded-full animate-pulse"></div>
+        <div className="absolute bottom-20 right-20 w-24 h-24 bg-purple-400 rounded-full animate-bounce"></div>
+        <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-indigo-400 rounded-full animate-ping"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 py-16 relative z-10">
@@ -19,7 +19,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="text-3xl font-bold text-teal-400 mb-4">MetaMart</h3>
+            <h3 className="text-3xl font-bold text-blue-400 mb-4">MetaMart</h3>
             <p className="text-gray-300 leading-relaxed">
               Your trusted partner for premium quality products. Shop with
               confidence and experience excellence.
@@ -37,7 +37,7 @@ const Footer = () => {
                   href={social.href}
                   target={social.name !== "Mail" ? "_blank" : "_self"}
                   rel={social.name !== "Mail" ? "noopener noreferrer" : ""}
-                  className="w-12 h-12 bg-teal-500/20 rounded-full flex items-center justify-center text-xl hover:bg-teal-500 hover:scale-110 transition-all duration-300 hover:rotate-12"
+                  className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center text-xl hover:bg-blue-500 hover:scale-110 transition-all duration-300 hover:rotate-12"
                 >
                   <Image
                     src={social.img}
@@ -52,7 +52,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-xl font-semibold mb-6 text-teal-400">
+            <h4 className="text-xl font-semibold mb-6 text-blue-400">
               Quick Links
             </h4>
             <ul className="space-y-3">
@@ -60,7 +60,7 @@ const Footer = () => {
                 <li key={link}>
                   <Link
                     href="#"
-                    className="text-gray-300 hover:text-teal-400 transition-colors duration-300 hover:translate-x-2 inline-block"
+                    className="text-gray-300 hover:text-blue-400 transition-colors duration-300 hover:translate-x-2 inline-block"
                   >
                     {link}
                   </Link>
@@ -71,7 +71,7 @@ const Footer = () => {
 
           {/* Customer Service */}
           <div>
-            <h4 className="text-xl font-semibold mb-6 text-teal-400">
+            <h4 className="text-xl font-semibold mb-6 text-blue-400">
               Customer Service
             </h4>
             <ul className="space-y-3">
@@ -85,7 +85,7 @@ const Footer = () => {
                 <li key={service}>
                   <Link
                     href="#"
-                    className="text-gray-300 hover:text-teal-400 transition-colors duration-300 hover:translate-x-2 inline-block"
+                    className="text-gray-300 hover:text-blue-400 transition-colors duration-300 hover:translate-x-2 inline-block"
                   >
                     {service}
                   </Link>
@@ -96,7 +96,7 @@ const Footer = () => {
 
           {/* Newsletter */}
           <div>
-            <h4 className="text-xl font-semibold mb-6 text-teal-400">
+            <h4 className="text-xl font-semibold mb-6 text-blue-400">
               Stay Connected
             </h4>
             <p className="text-gray-300 mb-4">
@@ -106,9 +106,9 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-teal-400 focus:outline-none transition-colors duration-300"
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-400 focus:outline-none transition-colors duration-300"
               />
-              <button className="w-full bg-teal-500 hover:bg-teal-600 text-white font-medium py-3 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg">
+              <button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium py-3 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg">
                 Subscribe
               </button>
             </div>
@@ -127,7 +127,7 @@ const Footer = () => {
                   <Link
                     key={policy}
                     href="#"
-                    className="text-gray-400 hover:text-teal-400 transition-colors duration-300 text-sm"
+                    className="text-gray-400 hover:text-blue-400 transition-colors duration-300 text-sm"
                   >
                     {policy}
                   </Link>
@@ -143,7 +143,7 @@ const Footer = () => {
             onClick={() =>
               window.scrollTo({ top: 0, behavior: "smooth" })
             }
-            className="w-14 h-14 bg-teal-500 hover:bg-teal-600 rounded-full flex items-center justify-center text-white text-xl shadow-lg hover:scale-110 transition-all duration-300 animate-bounce hover:animate-none"
+            className="w-14 h-14 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-full flex items-center justify-center text-white text-xl shadow-lg hover:scale-110 transition-all duration-300 animate-bounce hover:animate-none"
           >
             ↑
           </button>
