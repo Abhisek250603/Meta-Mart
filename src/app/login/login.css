@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-* {
+.login-page-body * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -9,12 +9,14 @@
     list-style: none;
 }
 
-body{
+.login-page-body{
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     background: linear-gradient(90deg, #e2e2e2, #c9d6ff);
+    margin: 0;
+    padding: 0;
 }
 
 .container{
@@ -234,4 +236,36 @@ form{ width: 100%; }
     .form-box { padding: 20px; }
 
     .toggle-panel h1{font-size: 30px; }
+}
+
+/* Back to Home Button */
+.back-home-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    background: #7494ec;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(116, 148, 236, 0.3);
+    transition: all 0.3s ease;
+    font-family: "Poppins", sans-serif;
+}
+
+.back-home-btn:hover {
+    background: #5a7bd8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(116, 148, 236, 0.4);
+}
+
+.back-home-btn i {
+    font-size: 16px;
 }

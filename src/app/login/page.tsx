@@ -1,9 +1,12 @@
 "use client";
 
 import React, { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import "./login.css";
 
 const LoginPage = () => {
+  const router = useRouter();
+
   useEffect(() => {
     // Add Boxicons CDN
     const link = document.createElement('link');
@@ -33,8 +36,22 @@ const LoginPage = () => {
     };
   }, []);
 
+  const handleBackToHome = () => {
+    router.push('/');
+  };
+
   return (
-    <div className="container">
+    <div className="login-page-body">
+      <button 
+        onClick={handleBackToHome}
+        className="back-home-btn"
+        title="Back to Home"
+      >
+        <i className="bx bx-home"></i>
+        Home
+      </button>
+      
+      <div className="container">
       <div className="form-box login">
         <form>
           <h1>Login</h1>
@@ -119,6 +136,7 @@ const LoginPage = () => {
           <button className="btn" id="login-btn">Login</button>
         </div>
       </div>
+    </div>
     </div>
   );
 };
