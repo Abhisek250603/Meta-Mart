@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { FiSearch, FiFilter, FiHeart, FiShoppingCart, FiStar } from 'react-icons/fi';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { useCart } from '../../context/CartContext';
 
 const products = [
   {
@@ -80,6 +81,19 @@ export default function ShopPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [favorites, setFavorites] = useState<number[]>([]);
+  const [toast, setToast] = useState<{show: boolean, message: string}>({show: false, message: ''});
+  const { addToCart } = useCart();
+
+  const handleAddToCart = (product: any) => {
+    addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image
+    });
+    setToast({show: true, message: `${product.name} added to cart!`});
+    setTimeout(() => setToast({show: false, message: ''}), 3000);
+  };
 
   const filteredProducts = products.filter(product => {
     const matchesCategory = selectedCategory === "All" || product.category === selectedCategory;
@@ -192,7 +206,10 @@ export default function ShopPage() {
 
                   {/* Quick Add to Cart */}
                   <div className="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                    <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors duration-300">
+                    <button 
+                      onClick={() => handleAddToCart(product)}
+                      className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors duration-300"
+                    >
                       <FiShoppingCart className="w-4 h-4" />
                       Quick Add
                     </button>
@@ -236,7 +253,10 @@ export default function ShopPage() {
                   </div>
 
                   {/* Add to Cart Button */}
-                  <button className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 font-semibold">
+                  <button 
+                    onClick={() => handleAddToCart(product)}
+                    className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 font-semibold"
+                  >
                     Add to Cart
                   </button>
                 </div>
@@ -252,6 +272,20 @@ export default function ShopPage() {
           </div>
         </div>
       </div>
+      
+      {/* Toast Notification */}
+      {toast.show && (
+        <div className="toast-notification">
+          <div className="toast-content">
+            <svg className="toast-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 12l2 2 4-4"/>
+              <circle cx="12" cy="12" r="10"/>
+            </svg>
+            <span>{toast.message}</span>
+          </div>
+        </div>
+      )}
+      
       <Footer />
 
       <style jsx>{`
@@ -280,6 +314,41 @@ export default function ShopPage() {
 
         .animation-delay-400 {
           animation-delay: 400ms;
+        }
+        
+        .toast-notification {
+          position: fixed;
+          top: 100px;
+          right: 20px;
+          z-index: 1000;
+          animation: slideInRight 0.3s ease-out;
+        }
+        
+        .toast-content {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          background: #10b981;
+          color: white;
+          padding: 12px 20px;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+          font-weight: 500;
+        }
+        
+        .toast-icon {
+          flex-shrink: 0;
+        }
+        
+        @keyframes slideInRight {
+          from {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
         }
       `}</style>
     </>

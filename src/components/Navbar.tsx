@@ -2,10 +2,22 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
+import { useCart } from '../context/CartContext'
 
 const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { items } = useCart();
+  const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
@@ -21,28 +33,30 @@ const Navbar = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-700 shadow-lg backdrop-blur-sm">
+    <header className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b shadow-lg transition-all duration-300 ${
+      isScrolled ? 'bg-white/90 border-gray-200' : 'bg-white/10 border-white/20'
+    }`}>
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Left Navigation */}
-        <nav className="flex items-center space-x-7">
-          <Link href="/" className="text-white font-medium hover:text-blue-200 transition-all duration-300 hover:scale-105">
+        <nav className="flex items-center space-x-7 font-inter">
+          <Link href="/" className="font-semibold text-gray-900 hover:text-blue-600 transition-all duration-300 hover:scale-105">
             Home
           </Link>
-          <Link href="/shop" className="text-white font-medium hover:text-blue-200 transition-all duration-300 hover:scale-105">
+          <Link href="/shop" className="font-semibold text-gray-900 hover:text-blue-600 transition-all duration-300 hover:scale-105">
             Shop
           </Link>
-          <Link href="/faq" className="text-white font-medium hover:text-blue-200 transition-all duration-300 hover:scale-105">
+          <Link href="/faq" className="font-semibold text-gray-900 hover:text-blue-600 transition-all duration-300 hover:scale-105">
             FAQ
           </Link>
-          <Link href="/contact" className="text-white font-medium hover:text-blue-200 transition-all duration-300 hover:scale-105">
+          <Link href="/contact" className="font-semibold text-gray-900 hover:text-blue-600 transition-all duration-300 hover:scale-105">
             Contact
           </Link>
         </nav>
 
         {/* Center Logo */}
         <div className="flex items-center justify-center flex-shrink-0">
-          <h1 className="text-3xl font-bold text-white tracking-wide">
-            Meta<span className="text-blue-200">Mart</span>
+          <h1 className="text-3xl font-bold tracking-wide text-gray-900 font-inter">
+            Meta<span className="text-blue-600">Mart</span>
           </h1>
         </div>
 
@@ -52,25 +66,29 @@ const Navbar = () => {
             onClick={toggleSearch}
             className="p-2 hover:bg-white/20 rounded-full transition-all duration-300 hover:scale-110"
           >
-            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+            <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
               <circle cx="11" cy="11" r="8"/>
               <path d="m21 21-4.35-4.35"/>
             </svg>
           </button>
           <Link href="/login" className="flex items-center space-x-1 hover:bg-white/20 px-3 py-2 rounded-lg transition-all duration-300 hover:scale-105">
-            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+            <svg className="w-5 h-5 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
               <circle cx="12" cy="7" r="4"/>
             </svg>
-            <span className="text-sm font-medium text-white">Login</span>
+            <span className="text-sm font-semibold text-gray-900 font-inter">Login</span>
           </Link>
           <Link href="/cart" className="relative p-2 hover:bg-white/20 rounded-full transition-all duration-300 hover:scale-110">
-            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+            <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
               <circle cx="8" cy="21" r="1"/>
               <circle cx="19" cy="21" r="1"/>
               <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
             </svg>
-            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold animate-pulse">4</span>
+            {totalItems > 0 && (
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold animate-pulse">
+                {totalItems}
+              </span>
+            )}
           </Link>
         </div>
       </div>
